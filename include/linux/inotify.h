@@ -21,3 +21,5 @@ extern struct ctl_table inotify_table[]; /* for sysctl */
 			  IN_ISDIR | IN_ONESHOT)
 
 #endif	/* _LINUX_INOTIFY_H */
+
+u32 inotify_mark_user_mask(struct fsnotify_mark *mark);
