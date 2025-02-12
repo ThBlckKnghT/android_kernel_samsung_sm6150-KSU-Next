@@ -1,8 +1,4 @@
 [submodule "KernelSU-Next"]
 	path = KernelSU-Next
-	url = https://github.com/ThBlckKnghT/android_kernel_samsung_sm6150-KSU-Next.git
-	branch = KernelSU-Next
-[submodule "susfs4ksu"]
-	path = susfs4ksu
-	url = https://github.com/ThBlckKnghT/android_kernel_samsung_sm6150-KSU-Next.git
-	branch = susfs4ksu
+	url = https://github.com/ThBlckKnghT/KernelSU-Next.git
+	branch = next
