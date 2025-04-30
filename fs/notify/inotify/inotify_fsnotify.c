@@ -34,6 +34,10 @@
 
 #include "inotify.h"
 
+u32 inotify_mark_user_mask(struct fsnotify_mark *mark)
+{
+    return mark->mask & IN_ALL_EVENTS;
+}
 /*
  * Check if 2 events contain the same information.
  */
