@@ -1517,6 +1517,12 @@ int mdss_mdp_overlay_start(struct msm_fb_data_type *mfd)
 			goto end;
 		}
 		mdss_hw_init(mdss_res);
+		/*
+		 * As splash is not enabled, disable EARLY_MAP setting which was
+		 * enabled through DT before first kickoff.
+		 */
+		mdss_smmu_set_attribute(MDSS_IOMMU_DOMAIN_UNSECURE,
+					 EARLY_MAP, 0);
 		mdss_iommu_ctrl(0);
 	}
 
@@ -5900,7 +5906,7 @@ static int mdss_mdp_overlay_off(struct msm_fb_data_type *mfd)
 		pr_debug("cleaning up pipes on fb%d\n", mfd->index);
 		if (mdata->handoff_pending)
 			mdp5_data->allow_kickoff = true;
-
+		atomic_inc(&mfd->mdp_sync_pt_data.commit_cnt);
 		mdss_mdp_overlay_kickoff(mfd, NULL);
 	} else if (!mdss_mdp_ctl_is_power_on(mdp5_data->ctl)) {
 		if (mfd->panel_reconfig) {
